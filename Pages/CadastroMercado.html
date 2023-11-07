@@ -26,6 +26,15 @@
             <label for="telefone">Telefone:</label>
             <input type="text" id="telefone" name="telefone" required>
 
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required> 
+            
+            <label for="confirmaSenha">Confirmar Senha:</label>
+            <input type="password" id="confirmaSenha" name="confirmaSenha" required>
+            <p id="senhaMismatch" style="color: red; display: none;">As senhas não correspondem.</p>
+
+            <button type="button" id="toggleSenha">Mostrar Senha</button>
+
             <button type="submit">Cadastrar</button>
         </form>
     </div>
@@ -75,6 +84,43 @@
                 alert("Formato de CEP inválido.");
             }
         };
+
+        document.getElementById('toggleSenha').addEventListener('click', function() {
+            var senhaInput = document.getElementById('senha');
+            if (senhaInput.type === 'password') {
+                senhaInput.type = 'text';
+                this.textContent = 'Ocultar Senha';
+            } else {
+                senhaInput.type = 'password';
+                this.textContent = 'Mostrar Senha';
+            }
+        });
+        
+        document.getElementById('toggleSenha').addEventListener('click', function() {
+            var senhaInput = document.getElementById('confirmaSenha');
+            if (senhaInput.type === 'password') {
+                senhaInput.type = 'text';
+                this.textContent = 'Ocultar Senha';
+            } else {
+                senhaInput.type = 'password';
+                this.textContent = 'Mostrar Senha';
+            }
+        });
+        
+        document.getElementById('cadastrarBtn').addEventListener('click', function(e) {
+            var senha = document.getElementById('senha').value;
+            var confirmaSenha = document.getElementById('confirmaSenha').value;
+            var senhaMismatch = document.getElementById('senhaMismatch');
+
+            if (senha !== confirmaSenha) {
+                senhaMismatch.style.display = 'block';
+                e.preventDefault(); 
+            } else {
+                senhaMismatch.style.display = 'none';
+            }
+        });
+    </script>
+
     </script>
 </body>
 </html>
