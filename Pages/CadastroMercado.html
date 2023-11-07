@@ -49,6 +49,10 @@
         $('#cnpj').inputmask('99.999.999/9999-99', { clearIncomplete: true });
     });
 
+    $(document).ready(function() {
+        $('#telefone').inputmask('(99) 9999-9999[9]');
+    });
+
     function mascaraCNPJ(cnpj) {
         cnpj = cnpj.replace(/\D/g, '');
         if (cnpj.length <= 14) {
