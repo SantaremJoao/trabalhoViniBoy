@@ -1,32 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-</head>
-<body>
-    <div id="cadastro-mercado">
-        <h2>Login</h2>
-        <form>
-            <label for="nome">Nome do Mercado:</label>
-            <input type="text" id="nome" name="nome" required>
+    <link rel="stylesheet" href="../Css/Login.css" />
+  </head>
+  <body>
+    <div id="login">
+      <h2>Login</h2>
+      <form>
+        <label for="cnpj">CPF/CNPJ:</label>
+        <input type="text" id="cnpj" name="cnpj" required />
 
-            <label for="cnpj">CNPJ:</label>
-            <input type="text" id="cnpj" name="cnpj" required>
-            
-            <label for="cep">CEP:</label>
-            <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
-               onblur="pesquisacep(this.value);" />
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required />
 
-            <label for="endereco">Endereço:</label>
-            <input type="text" id="endereco" name="endereco" required>
-
-            <label for="telefone">Telefone:</label>
-            <input type="text" id="telefone" name="telefone" required>
-
-            <button type="submit">Cadastrar</button>
-        </form>
+        <button type="submit">Entrar</button>
+        <p>
+          Voce deseja cadastrar seu mercado
+          <a href="../Pages/CadastroMercado.html"> Entre aqui</a>
+        </p>
+      </form>
     </div>
-</body>
+  </body> 
 </html>
+<script>
+    document.getElementById("login-form").addEventListener("submit", function (event) {
+      event.preventDefault(); 
+
+      var cpfcnpjValue = document.getElementById("cpfcnpj").value;
+      var senhaValue = document.getElementById("senha").value;
+      if (cpfcnpjValue === "seu cpfcnpj" && senhaValue === "sua senha") {
+        alert("Login bem-sucedido!");
+      } else {
+        alert("CPF/CNPJ ou Senha incorretos. Tente novamente.");
+      }
+    });
+  </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#cpf").inputmask("999.999.999-99");
+        });
+        
+        $(document).ready(function () {
+            $("#cnpj").inputmask("99.999.999/9999-99");
+        });
+
+        function mascaraCNPJCPF(cpfcnpj) {
+            cpfcnpj = cpfcnpj.replace(/\D/g, "");
+            if (cpfcnpj.length <= 11) {
+                cpfcnpj = cpfcnpj.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+            } else if (cpfcnpj.length <= 14) {
+                cpfcnpj = cpfcnpj.replace(
+                /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
+                "$1.$2.$3/$4-$5"
+            );
+            } else {
+                cpfcnpj = cpfcnpj.substr(0, 14);
+                cpfcnpj = cpfcnpj.replace(
+                /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
+                "$1.$2.$3/$4-$5"
+            );
+            }
+            document.getElementById("cpf").value = cpfcnpj;
+            document.getElementById("cnpj").value = cpfcnpj;
+        }
+
+        document.getElementById("cnpj").addEventListener("input", function (e) {
+            mascaraCNPJCPF(e.target.value);
+        });
+
+        document.getElementById("cpf").addEventListener("input", function (e) {
+            mascaraCNPJCPF(e.target.value);
+        });
+        
+    </script>
