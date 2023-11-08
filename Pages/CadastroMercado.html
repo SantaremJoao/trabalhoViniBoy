@@ -43,31 +43,31 @@
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#cnpj').inputmask('99.999.999/9999-99', { clearIncomplete: true });
-    });
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#cnpj').inputmask('99.999.999/9999-99', { clearIncomplete: true });
+        });
 
-    $(document).ready(function() {
-        $('#telefone').inputmask('(99) 9999-9999[9]');
-    });
+        $(document).ready(function() {
+            $('#telefone').inputmask('(99) 9999-9999[9]');
+        });
 
-    function mascaraCNPJ(cnpj) {
-        cnpj = cnpj.replace(/\D/g, '');
-        if (cnpj.length <= 14) {
-            cnpj = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
-        } else {
-            cnpj = cnpj.substr(0, 14);
-            cnpj = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+        function mascaraCNPJ(cnpj) {
+            cnpj = cnpj.replace(/\D/g, '');
+            if (cnpj.length <= 14) {
+                cnpj = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+            } else {
+                cnpj = cnpj.substr(0, 14);
+                cnpj = cnpj.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+            }
+            document.getElementById('cnpj').value = cnpj;
         }
-        document.getElementById('cnpj').value = cnpj;
-    }
 
-    document.getElementById('cnpj').addEventListener('input', function(e) {
-        mascaraCNPJ(e.target.value);
-    });
-</script>
+        document.getElementById('cnpj').addEventListener('input', function(e) {
+            mascaraCNPJ(e.target.value);
+        });
+    </script>
 
     <script>
         function limpa_formulário_cep() {
