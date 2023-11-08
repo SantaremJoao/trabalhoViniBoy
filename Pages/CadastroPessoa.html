@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tela de Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="../Css/CadastroPessoa.css" />
+</head>
+<body>
+    <div class="container">
+        <form id="register-form">
+            <h2>Tela de Cadastro</h2>
+            <label for="complete-name">Nome completo:</label>
+            <input type="text" id="complete-name" name="complete-name" required placeholder="Digite seu nome completo">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required placeholder="Digite sua senha">
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" required placeholder="Digite seu CPF">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required placeholder="Digite seu e-mail">
+            <label for="birthdate">Data de Nascimento:</label>
+            <input type="date" id="birthdate" name="birthdate" required>
+            <button type="button" id="register-button">Cadastrar</button>
+            <p>Já tem uma conta? <a href="../Pages/Login.html">Faça o login</a></p>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+    <script>
+        const registerForm = document.getElementById('register-form');
+        const completeNameInput = document.getElementById('complete-name');
+        const passwordInput = document.getElementById('password');
+        const cpfInput = document.getElementById('cpf');
+        const emailInput = document.getElementById('email');
+        const birthdateInput = document.getElementById('birthdate');
+        const registerButton = document.getElementById('register-button');
+
+        
+        $(cpfInput).inputmask({
+            mask: ['999.999.999-99'],
+            keepStatic: true,
+            clearIncomplete: true,
+        });
+
+        registerButton.addEventListener('click', () => {
+            const firstName = completeNameInput.value;
+            const password = passwordInput.value;
+            const cpf = cpfInput.value;
+            const email = emailInput.value;
+            const birthdate = birthdateInput.value;
+            alert('Cadastro bem-sucedido');
+        });
+    </script>
+</body>
+</html>
