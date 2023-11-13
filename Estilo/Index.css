@@ -1,0 +1,33 @@
+
+.containers{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: azure;
+    
+}
+.alimentos{
+    display: flex;
+    flex-flow: row wrap;
+    
+    
+}
+.alimento{
+    
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 10px;
+    margin: 20px;
+    width: 210px;
+}
+.infoAlimento{
+    padding-top: 10px;
+    
+}
+.checkboxAlimento {
+    display: flex;
+    align-items: center;
+
+}
